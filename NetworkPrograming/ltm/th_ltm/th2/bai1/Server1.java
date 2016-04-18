@@ -11,6 +11,7 @@ public class Server1 {
 			UDPServer server = new UDPServer(50000, 2048, StringProcessing.getInstance());
 			server.start();
 			System.out.println("server started");
+			while (true);
 		} catch (SocketException se) {
 			System.out.println("cannot start server\nerror:"+ se.getMessage());
 		}

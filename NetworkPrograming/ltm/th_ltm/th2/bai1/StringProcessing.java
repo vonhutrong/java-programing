@@ -36,6 +36,7 @@ public class StringProcessing implements ITransferMethod {
 		
 		// get string
 		String receiveString = new String(ReceivePacket.getData(), 0, ReceivePacket.getLength());
+		System.out.println("server received:" + receiveString);
 		
 		// process string
 		StringBuilder sb = new StringBuilder();

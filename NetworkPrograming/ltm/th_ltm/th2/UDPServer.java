@@ -15,7 +15,7 @@ public class UDPServer {
 	public UDPServer(int port, int bufferSize, ITransferMethod transferMethod) throws SocketException {
 		this.port = port;
 		this.transferMethod = transferMethod;
-		socket = new DatagramSocket(port);
+		socket = new DatagramSocket(this.port);
 		receivePacket = new DatagramPacket( new byte[bufferSize], bufferSize);
 	}
 	

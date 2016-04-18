@@ -5,6 +5,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.Vector;
+import java.net.InetAddress;
 
 import th_ltm.th2.DataChangeEvent;
 import th_ltm.th2.IDataListener;
@@ -18,9 +19,9 @@ import th_ltm.th2.bai3.server.chat_event.IChatListener;
 public class ClientChat extends UDPClient {
 	private Vector<IClientChatListener> chatListeners;
 
-	public ClientChat(int serverPort, int bufferSize) throws SocketException,
+	public ClientChat(InetAddress serverAddress, int serverPort, int bufferSize) throws SocketException,
 			UnknownHostException {
-		super(serverPort, bufferSize);
+		super(serverAddress, serverPort, bufferSize);
 	}
 		
 	@Override

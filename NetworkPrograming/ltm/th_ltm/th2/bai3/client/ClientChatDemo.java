@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.net.InetAddress;
 
 import th_ltm.th2.bai3.client.event.IClientChatListener;
 import th_ltm.th2.bai3.client.event.MessageEvent;
@@ -15,8 +16,8 @@ public class ClientChatDemo implements IClientChatListener{
 	private String name;
 	private boolean joinOk = false;
 	
-	public ClientChatDemo() throws SocketException, UnknownHostException {
-		clientChat = new ClientChat(50000, 2048);
+	public ClientChatDemo(InetAddress serverAddress, int serverPort) throws SocketException, UnknownHostException {
+		clientChat = new ClientChat(serverAddress, serverPort, 2048);
 		clientChat.addChatListener(this);
 	}
 	
@@ -85,26 +86,36 @@ public class ClientChatDemo implements IClientChatListener{
 	}
 	
 	public static void main(String[] args) {
-		Scanner sc = null;
+		Scanner sc = new Scanner(System.in);
 		ClientChatDemo client = null;
-		try {
-			sc = new Scanner(System.in);
-			client = new ClientChatDemo();
-			
-			client.start();
-			System.out.println("type you name to login to server\n"
-					+ "\tafter that, you can type 'out' to logout from server");
-			
-			while (true) {
-				String inputString = sc.nextLine();
-				inputString = inputString.trim();
-				client.sendString(inputString);
+		
+		// input server address and server port
+		while (true) {
+			try {
+				System.out.print("server address:");
+				InetAddress serverAddress = InetAddress.getByName(sc.nextLine());
+				System.out.print("server port:");
+				int serverPort = Integer.parseInt(sc.nextLine());
+				client = new ClientChatDemo(serverAddress, serverPort);
+				System.out.println("create client successfully");
+				break;
+			} catch (UnknownHostException ex) {
+				System.out.println("server address invalid");
+			} catch (NumberFormatException ex2) {
+				System.out.println("server port invalid");
+			} catch (SocketException e) {
+				System.out.println("cannot create client");
 			}
-		} catch (SocketException | UnknownHostException e) {
-			System.out.println("cannot connect to server");
-		} finally {
-			sc.close();
-			client.close();
+		}
+		
+		client.start();
+		System.out.println("type you name to login to server\n"
+				+ "after that, you can type 'out' to logout from server");
+		
+		while (true) {
+			String inputString = sc.nextLine();
+			inputString = inputString.trim();
+			client.sendString(inputString);
 		}
 		
 	}
