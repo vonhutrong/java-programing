@@ -7,7 +7,7 @@ public class UDPListConnections {
 	private Map<String, UDPConnection> listConnections;
 	
 	public UDPListConnections() {
-		listConnections = new HashMap<>();
+		listConnections = new HashMap<String, UDPConnection>();
 	}
 	
 	public boolean addConnection(UDPConnection conn, String name) {

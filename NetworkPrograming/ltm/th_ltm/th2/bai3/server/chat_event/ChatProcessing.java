@@ -16,7 +16,7 @@ public class ChatProcessing {
 	
 	public ChatProcessing(ServerChat serverChat) {
 		this.serverChat = serverChat;
-		this.listeners = new Vector<>();
+		this.listeners = new Vector<IChatListener>();
 	}
 	
 	public void transfer() throws IOException {
