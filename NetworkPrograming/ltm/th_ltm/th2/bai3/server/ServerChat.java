@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Scanner;
 
 import th_ltm.th2.UDPServer;
 import th_ltm.th2.bai3.server.chat_event.ChatEvent;
@@ -116,7 +117,10 @@ public class ServerChat extends UDPServer implements IChatListener {
 
 	public static void main(String[] args) {
 		try {
-			ServerChat serverChat = new ServerChat(50000, 2048);
+			Scanner sc = new Scanner(System.in);
+			System.out.print("server port:");
+			int serverPort = Integer.parseInt(sc.nextLine());
+			ServerChat serverChat = new ServerChat(serverPort, 2048);
 			serverChat.start();
 			System.err.println("server started");
 		} catch (Exception ex) {
