@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-	private static MySQLConnection connection = null;
-	private static final String DATABASE_NAME = "dulieu";
+	private static ISQLDatabaseConnection connection = null;
+	private static final String DATABASE_NAME = "E:\\Dropbox\\projects\\dut-projects\\java-programing\\TH_LTM_3\\db\\dulieu";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 	
@@ -15,7 +15,8 @@ public class DatabaseManager {
 	
 	public static boolean connectDatabase(String databaseName) {
 		try {
-			connection = new MySQLConnection(databaseName, USERNAME, PASSWORD);
+			/*connection = new MySQLConnection(databaseName, USERNAME, PASSWORD);*/
+			connection = new SQLiteConnection(databaseName);
 			return true;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
