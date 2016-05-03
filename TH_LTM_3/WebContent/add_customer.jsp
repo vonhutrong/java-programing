@@ -1,7 +1,6 @@
 <%@page import="database.CustomerManager"%>
 <%@page import="th_ltm.th3.Customer"%>
 <%@page import="th_ltm.th3.MyTool"%>
-<%@page import="th_ltm.th3.MySQLConnection"%>
 <%@page import="th_ltm.th3.Converter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

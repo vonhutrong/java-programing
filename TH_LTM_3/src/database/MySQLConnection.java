@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MySQLConnection {
+public class MySQLConnection implements ISQLDatabaseConnection {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	protected String subprotocol = "mysql";
 	protected String subname = "//localhost";
